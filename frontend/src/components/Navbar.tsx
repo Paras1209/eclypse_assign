@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
-        <nav className="fixed left-0 top-0 w-full bg-black/59 backdrop-blur-lg py-4 z-50 mb-8  md:px-23">
+        <nav className="fixed left-0 top-0 w-full bg-black/59 backdrop-blur-lg py-3 z-50 mb-8  md:px-23">
             <div className="container mx-auto flex items-center justify-between">
                 {/* Logo on left */}
                 <div className="flex-shrink-0">

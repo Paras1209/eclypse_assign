@@ -96,10 +96,11 @@
 
 // components/ProductDetails.tsx
 import { useState } from "react";
+import { FaArrowDown , FaArrowUp } from "react-icons/fa";
 
 const dummyProduct = {
   id: "1",
-  name: "Silhouette No. 1 — Vermilion",
+  name: "Silhouette No. 1 - Vermilion",
   description:
     "A tailored composition in vermilion. Cut from structured wool with a peaked neckline, this silhouette is all attitude. Captures precision without force. Wear it wherever an edge is very welcome.",
   price: 7999,
@@ -120,10 +121,13 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className=" text-white min-h-screen  my-5 space-y-10">
-      <span className="m-5 p-4 ml-8">
-        <h1 className="text-4xl font-sans ">{dummyProduct.name}</h1>
-      </span> 
+    <div className=" text-white min-h-screen   space-y-10">
+
+
+      <div className=" m-10 my-30 p-10">
+        <h1 className="align-text-bottom text-5xl font-sans font-normal ">{dummyProduct.name}</h1>
+      </div> 
+
       <div className="bg-white mt-40 mb-30  text-black grid md:grid-cols-2 gap-8">
         {/* Left: Primary Image */}
         <div>
@@ -139,13 +143,13 @@ export default function ProductDetails() {
           <p className="text-medium font-medium  mt-10 ">{dummyProduct.description}</p>
 
           {/* Thumbnails */}
-          <div className="flex gap-2 py-10 mb-5 border-b border-gray-600 ">
+          <div className="flex gap-3 py-10 mb-5 border-b-2 border-gray-200 ">
         {dummyProduct.images.map((img, idx) => (
           <img
             key={idx}
             src={img}
             alt={`thumb-${idx}`}
-            className="w-1/3 h-50 object-cover rounded-md"
+            className="w-1/3 h-50 object-cover "
           />
         ))}
           </div>
@@ -158,7 +162,7 @@ export default function ProductDetails() {
           </div>
 
           {/* Sizes */}
-          <div className="mt-2 border-b border-gray-600 pb-14 mb-20">
+          <div className="mt-2 border-b-2 border-gray-200 pb-14 mb-20">
         <span><p className="text-lg text-gray-500 mb-10">Please select a size:</p></span>
         <div className="flex gap-8 text-sm">
           {dummyProduct.sizes.map((size) => (
@@ -189,15 +193,15 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      {/* Dropdowns */}
-      <div className="space-y-6 m-16 my-20 font-medium">
-        <div className="mb-4">
+      <div className="space-y-6 m-14 my-20  font-">
+        <div className="mb-15 ">
           <button
         onClick={() => toggleDropdown("Size & Fit")}
-        className="flex justify-between w-full text-left py-4 px-2 border-b-2 border-gray-600"
+        className="flex justify-between w-full text-left pb-10 pt-15 px-2 border-b border-b-gray-800 "
           >
         <span className="text-3xl">Size & Fit</span>
-        <span className="text-xl">{activeDropdown === "Size & Fit" ? "▲" : "▼"}</span>
+        <span className="text-xl">{activeDropdown === "Size & Fit" ?  <FaArrowUp />:<FaArrowDown /> 
+}</span>
           </button>
           {activeDropdown === "Size & Fit" && (
         <div className="text-lg text-gray-400 mt-4 p-4">
@@ -206,13 +210,14 @@ export default function ProductDetails() {
           )}
         </div>
 
-        <div className="mb-4">
+        <div className="mb-15">
           <button
         onClick={() => toggleDropdown("Delivery & Returns")}
-        className="flex justify-between w-full text-left py-4 px-2 border-b-2 border-gray-600"
+        className="flex justify-between w-full text-left py-6 px-2 pb-10 border-b-2 border-gray-800"
           >
         <span className="text-3xl">Delivery & Returns</span>
-        <span className="text-2xl">{activeDropdown === "Delivery & Returns" ? "▲" : "▼"}</span>
+        <span className="text-2xl">{activeDropdown === "Delivery & Returns" ? <FaArrowUp />:<FaArrowDown /> 
+}</span>
           </button>
           {activeDropdown === "Delivery & Returns" && (
         <div className="text-lg text-gray-400 mt-4 p-4">
@@ -224,10 +229,11 @@ export default function ProductDetails() {
         <div className="mb-4">
           <button
         onClick={() => toggleDropdown("How This Was Made")}
-        className="flex justify-between w-full text-left py-4 px-2 border-b-2 border-gray-600"
+        className="flex justify-between w-full text-left py-4 px-2 border-b-2 border-gray-800 pb-10"
           >
         <span className="text-3xl">How This Was Made</span>
-        <span className="text-2xl">{activeDropdown === "How This Was Made" ? "▲" : "▼"}</span>
+        <span className="text-2xl">{activeDropdown === "How This Was Made" ? <FaArrowUp />:<FaArrowDown />
+}</span>
           </button>
           {activeDropdown === "How This Was Made" && (
         <div className="text-lg text-gray-400 mt-4 p-4">

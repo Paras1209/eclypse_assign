@@ -1,9 +1,11 @@
 import React from "react";
 import ProductDetails from "../components/ProductDetails";
+import Testimony from "../components/Testimony";
+import Footer from "../components/Footer";
 
 function Home() {
   return (
-    <div className="pt-12 bg-[#0a0a0a] ">
+    <div className="pt-12 bg-[#0a0a0a] overflow-scroll hide-scrollbar">
       {/* Hero section */}
       <div>
         <section className=" text-white min-h-screen w-full mt-20 p-12 pb-0">
@@ -127,7 +129,12 @@ function Home() {
     </div>
 
     {/* testimonials */}
-    <div className="text-2xl text-white"><p>hello world</p></div>
+    <div className="p-10 m-10">
+      <Testimony />
+    </div>
+
+    {/* Footer */}
+    <footer><Footer/></footer>
 
     </div>
   );

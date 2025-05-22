@@ -6,7 +6,7 @@ import Home from './pages/Home'
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-black px-12">
+      <div className="min-h-screen bg-black px-12 ">
         <Navbar />
         <Home />
       </div>
