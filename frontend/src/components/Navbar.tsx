@@ -18,10 +18,10 @@ function Navbar() {
                 {/* Navigation links in center */}
                 <div className="flex-grow">
                     <div className="hidden md:flex items-center justify-end space-x-15">
-                        <Link to="/" className="text-white hover:text-gray-300 font-medium text-lg">About Us</Link>
-                        <Link to="/products" className="text-white hover:text-gray-300 font-medium text-lg">Waitlist</Link>
-                        <Link to="/about" className="text-white hover:text-gray-300 font-medium text-lg">Cart</Link>
-                        <Link to="/cart" className="bg-white text-black px-9 py-3 rounded-md flex items-center justify-center font-medium text-lg">
+                        <Link to="/about" className="text-white hover:text-gray-300 font-medium text-lg">About Us</Link>
+                        <Link to="/waitlist" className="text-white hover:text-gray-300 font-medium text-lg">Waitlist</Link>
+                        <Link to="/cart" className="text-white hover:text-gray-300 font-medium text-lg">Cart</Link>
+                        <Link to="/checkout" className="bg-white text-black px-9 py-3 rounded-md flex items-center justify-center font-medium text-lg">
                             <span>Buy</span>
                         </Link>
                     </div>
