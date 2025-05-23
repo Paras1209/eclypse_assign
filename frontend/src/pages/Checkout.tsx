@@ -28,7 +28,7 @@ function Checkout() {
   const [step, setStep] = useState<'shipping' | 'payment' | 'confirmation'>(isAuthenticated && savedAddresses.length > 0 ? 'payment' : 'shipping');
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState<string>('');
-  const [oneClickPayment, setOneClickPayment] = useState(false);
+  const [_oneClickPayment, setOneClickPayment] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderError, setOrderError] = useState<string | null>(null);
   
