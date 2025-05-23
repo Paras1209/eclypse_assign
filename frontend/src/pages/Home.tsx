@@ -1,4 +1,3 @@
-import React from "react";
 import ProductDetails from "../components/ProductDetails";
 import Testimony from "../components/Testimony";
 import Footer from "../components/Footer";
