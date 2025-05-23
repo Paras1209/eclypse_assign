@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           const parsedUser = JSON.parse(storedUser);
           
           // Check if token is still valid by fetching user profile
-          const response = await fetch('http://localhost:5000/api/users/profile', {
+          const response = await fetch('https://eclypse-yb4f.onrender.com/api/users/profile', {
             headers: {
               Authorization: `Bearer ${parsedUser.token}`,
             },
@@ -98,7 +98,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:5000/api/users/login', {
+      const response = await fetch('https://eclypse-yb4f.onrender.com/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setLoading(true);
       setError(null);
       
-      const response = await fetch('http://localhost:5000/api/users/register', {
+      const response = await fetch('https://eclypse-yb4f.onrender.com/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!user) return false;
     
     try {
-      const response = await fetch('http://localhost:5000/api/users/payment-method', {
+      const response = await fetch('https://eclypse-yb4f.onrender.com/api/users/payment-method', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     if (!user) return false;
     
     try {
-      const response = await fetch('http://localhost:5000/api/users/address', {
+      const response = await fetch('https://eclypse-yb4f.onrender.com/api/users/address', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

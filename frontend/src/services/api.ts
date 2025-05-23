@@ -1,5 +1,5 @@
 // API service for interacting with the backend
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://eclypse-yb4f.onrender.com/api';
 
 export interface Product {
   id: string;
