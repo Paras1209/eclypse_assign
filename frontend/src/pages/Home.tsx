@@ -9,7 +9,7 @@ function Home() {
         <section className="text-white min-h-screen w-full mt-12 sm:mt-16 md:mt-20 px-4 sm:px-6 md:px-12 pb-0">
           <div className="flex justify-between place-items-end pb-4 sm:pb-7 pt-4">
             <img
-              src="src/assets/Hero_header.png"
+              src="assets/Hero_header.png"
               alt="Eclypse Logo"
               className="h-16 sm:h-24 md:h-32"
             />
@@ -25,7 +25,7 @@ function Home() {
               loop
               playsInline
             >
-              <source src="src/assets/hero_section.mp4" type="video/mp4" />
+              <source src="assets/hero_section.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -56,7 +56,7 @@ function Home() {
                     autoPlay
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 >
-                    <source src="src/assets/eclypse.mp4" type="video/mp4" />
+                    <source src="assets/eclypse.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
 
                 </video>
@@ -68,7 +68,7 @@ function Home() {
             {/* Top-right image */}
             <div className="overflow-hidden rounded-lg h-120 relative group">
                 <img
-                    src="src/assets/grid1.jpg"
+                    src="assets/grid1.jpg"
                     alt="Image 1"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -80,7 +80,7 @@ function Home() {
             {/* Bottom-left image */}
             <div className="overflow-hidden rounded-lg h-100 relative group">
                 <img
-                    src="src/assets/grid2.jpg"
+                    src="assets/grid2.jpg"
                     alt="Image 2"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -93,7 +93,7 @@ function Home() {
             {/* Bottom-middle image */}
             <div className="overflow-hidden rounded-lg h-100 relative group">
                 <img
-                    src="src/assets/grid3.jpg"
+                    src="assets/grid3.jpg"
                     alt="Image 3"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
@@ -106,14 +106,14 @@ function Home() {
             {/* Bottom-right image */}
             <div className="overflow-hidden rounded-lg h-100 relative group">
                 <img
-                    src="src/assets/logo.jpg"
+                    src="assets/logo.jpg"
                     alt="Image 4"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {/* overlaying image */}
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
                     <img 
-                        src="src/assets/Hero_header.png" 
+                        src="assets/Hero_header.png" 
                         alt="Eclypse Logo" 
                         className="w-2/3 mx-auto"
                     />

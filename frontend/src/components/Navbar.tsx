@@ -20,7 +20,7 @@ function Navbar() {
                 <div className="flex-shrink-0">
                     <Link to="/">
                         <img 
-                            src="src/assets/logo.jpg" 
+                            src="assets/logo.jpg" 
                             alt="Logo" 
                             className="h-10 sm:h-12 w-auto rounded-md" 
                         />

@@ -107,9 +107,9 @@ const dummyProduct = {
     "A tailored composition in vermilion. Cut from structured wool with a peaked neckline, this silhouette is all attitude. Captures precision without force. Wear it wherever an edge is very welcome.",
   price: 7999,
   images: [
-    "src/assets/product-images/vermilion-1.jpg",
-    "src/assets/product-images/vermilion-2.jpg",
-    "src/assets/product-images/vermilion-3.jpg",
+    "assets/product-images/vermilion-1.jpg",
+    "assets/product-images/vermilion-2.jpg",
+    "assets/product-images/vermilion-3.jpg",
   ],
   sizes: ["XS", "S", "M", "L", "XL"],
 };
