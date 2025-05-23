@@ -96,7 +96,9 @@
 
 // components/ProductDetails.tsx
 import { useState } from "react";
-import { FaArrowDown , FaArrowUp } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../lib/CartContext";
 
 const dummyProduct = {
   id: "1",
@@ -115,130 +117,170 @@ const dummyProduct = {
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const toggleDropdown = (key: string) => {
     setActiveDropdown(prev => (prev === key ? null : key));
   };
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      alert('Please select a size');
+      return;
+    }
 
+    addToCart({
+      id: dummyProduct.id,
+      name: dummyProduct.name,
+      price: dummyProduct.price,
+      image: dummyProduct.images[0],
+      quantity: 1,
+      size: selectedSize,
+    });
+
+    alert('Item added to cart successfully!');
+  };
+
+  const handleBuyNow = () => {
+    if (!selectedSize) {
+      alert('Please select a size');
+      return;
+    }
+
+    addToCart({
+      id: dummyProduct.id,
+      name: dummyProduct.name,
+      price: dummyProduct.price,
+      image: dummyProduct.images[0],
+      quantity: 1,
+      size: selectedSize,
+    });
+
+    navigate('/checkout');
+  };
   return (
-    <div className=" text-white min-h-screen   space-y-10">
+    <div className="text-white min-h-screen space-y-6 sm:space-y-10">
 
-
-      <div className=" m-10 my-30 p-10">
-        <h1 className="align-text-bottom text-5xl font-sans font-normal ">{dummyProduct.name}</h1>
+      {/* Product Title */}
+      <div className="px-4 sm:m-10 sm:my-30 sm:p-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-sans font-normal">{dummyProduct.name}</h1>
       </div> 
 
-      <div className="bg-white mt-40 mb-30  text-black grid md:grid-cols-2 gap-8">
+      {/* Product Image and Details */}
+      <div className="bg-white text-black grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 sm:mt-40 sm:mb-30">
         {/* Left: Primary Image */}
-        <div>
+        <div className="px-4 sm:px-0">
           <img
-        src={dummyProduct.images[0]}
-        alt={dummyProduct.name}
-        className="w-full object-cover rounded-xl"
+            src={dummyProduct.images[0]}
+            alt={dummyProduct.name}
+            className="w-full object-cover rounded-xl"
           />
         </div>
 
         {/* Right: Details */}
-        <div className="space-y- mr-10">
-          <p className="text-medium font-medium  mt-10 ">{dummyProduct.description}</p>
+        <div className="px-4 sm:px-0 sm:mr-10">
+          <p className="text-sm sm:text-medium font-medium mt-4 sm:mt-10">{dummyProduct.description}</p>
 
           {/* Thumbnails */}
-          <div className="flex gap-3 py-10 mb-5 border-b-2 border-gray-200 ">
-        {dummyProduct.images.map((img, idx) => (
-          <img
-            key={idx}
-            src={img}
-            alt={`thumb-${idx}`}
-            className="w-1/3 h-50 object-cover "
-          />
-        ))}
+          <div className="flex gap-2 sm:gap-3 py-4 sm:py-10 mb-3 sm:mb-5 border-b-2 border-gray-200 overflow-x-auto">
+            {dummyProduct.images.map((img, idx) => (
+              <img
+                key={idx}
+                src={img}
+                alt={`thumb-${idx}`}
+                className="w-24 sm:w-1/3 h-auto object-cover flex-shrink-0"
+              />
+            ))}
           </div>
 
-          <br />
-
           {/* Price */}
-          <div className="text-4xl font-bold my-4 pb-5">
-        ₹ {dummyProduct.price.toLocaleString()} <span className="text-xs font-medium text-gray-500">MRP incl. of all taxes</span>
+          <div className="text-2xl sm:text-3xl md:text-4xl font-bold my-4 pb-3 sm:pb-5">
+            ₹ {dummyProduct.price.toLocaleString()} 
+            <span className="block sm:inline text-xs font-medium text-gray-500 mt-1 sm:mt-0 sm:ml-2">MRP incl. of all taxes</span>
           </div>
 
           {/* Sizes */}
-          <div className="mt-2 border-b-2 border-gray-200 pb-14 mb-20">
-        <span><p className="text-lg text-gray-500 mb-10">Please select a size:</p></span>
-        <div className="flex gap-8 text-sm">
-          {dummyProduct.sizes.map((size) => (
-            <button
-          key={size}
-          onClick={() => setSelectedSize(size)}
-          className={`px-7 py-3  bg-[#d9d9d9]  rounded ${
-            selectedSize === size
-              ? "bg-black text-white"
-              : "text-black border-black"
-          }`}
-            >
-          {size}
-            </button>
-          ))}
-        </div>
+          <div className="mt-2 border-b-2 border-gray-200 pb-6 sm:pb-14 mb-6 sm:mb-20">
+            <p className="text-base sm:text-lg text-gray-500 mb-4 sm:mb-10">Please select a size:</p>
+            <div className="flex flex-wrap gap-2 sm:gap-8 text-xs sm:text-sm">
+              {dummyProduct.sizes.map((size) => (
+                <button
+                  key={size}
+                  onClick={() => setSelectedSize(size)}
+                  className={`px-4 sm:px-7 py-2 sm:py-3 bg-[#d9d9d9] rounded ${
+                    selectedSize === size
+                      ? "bg-black text-white"
+                      : "text-black border-black"
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
           </div>
-
+          
           {/* Buttons */}
-          <div className="flex gap-6 mt-4 ">
-        <button className="border-2 text-lg font-medium w-1/3 border-gray-300 px-6 py-3 rounded-md hover:bg-black hover:text-white transition">
-          Add to Cart
-        </button>
-        <button className="bg-black w-2/3 text-white text-lg font-medium  py-3 rounded-md">
-          Buy
-        </button>
+          <div className="flex gap-3 sm:gap-6 mt-4">
+            <button 
+              onClick={handleAddToCart}
+              className="border-2 text-sm sm:text-lg font-medium w-1/3 border-gray-300 px-2 sm:px-6 py-2 sm:py-3 rounded-md hover:bg-black hover:text-white transition"
+            >
+              Add to Cart
+            </button>
+            <button 
+              onClick={handleBuyNow}
+              className="bg-black w-2/3 text-white text-sm sm:text-lg font-medium py-2 sm:py-3 rounded-md"
+            >
+              Buy
+            </button>
           </div>
         </div>
       </div>
 
-      <div className="space-y-6 m-14 my-20  font-">
-        <div className="mb-15 ">
+      {/* Product Information Dropdowns */}
+      <div className="space-y-4 sm:space-y-6 px-4 sm:m-14 sm:my-20">
+        <div className="mb-4 sm:mb-15">
           <button
-        onClick={() => toggleDropdown("Size & Fit")}
-        className="flex justify-between w-full text-left pb-10 pt-15 px-2 border-b border-b-gray-800 "
+            onClick={() => toggleDropdown("Size & Fit")}
+            className="flex justify-between w-full text-left pb-4 sm:pb-10 pt-2 sm:pt-15 px-2 border-b border-b-gray-800"
           >
-        <span className="text-3xl">Size & Fit</span>
-        <span className="text-xl">{activeDropdown === "Size & Fit" ?  <FaArrowUp />:<FaArrowDown /> 
-}</span>
+            <span className="text-xl sm:text-2xl md:text-3xl">Size & Fit</span>
+            <span className="text-lg sm:text-xl">{activeDropdown === "Size & Fit" ? <FaArrowUp /> : <FaArrowDown />}</span>
           </button>
           {activeDropdown === "Size & Fit" && (
-        <div className="text-lg text-gray-400 mt-4 p-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque corporis quae asperiores accusamus facilis minus atque similique cupiditate maiores, nesciunt labore. Magni enim odit dolorum aliquid doloremque pariatur eius voluptas.
-        </div>
+            <div className="text-base sm:text-lg text-gray-400 mt-4 p-2 sm:p-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque corporis quae asperiores accusamus facilis minus atque similique cupiditate maiores, nesciunt labore. Magni enim odit dolorum aliquid doloremque pariatur eius voluptas.
+            </div>
           )}
         </div>
 
-        <div className="mb-15">
+        <div className="mb-4 sm:mb-15">
           <button
-        onClick={() => toggleDropdown("Delivery & Returns")}
-        className="flex justify-between w-full text-left py-6 px-2 pb-10 border-b-2 border-gray-800"
+            onClick={() => toggleDropdown("Delivery & Returns")}
+            className="flex justify-between w-full text-left py-2 sm:py-6 px-2 pb-4 sm:pb-10 border-b-2 border-gray-800"
           >
-        <span className="text-3xl">Delivery & Returns</span>
-        <span className="text-2xl">{activeDropdown === "Delivery & Returns" ? <FaArrowUp />:<FaArrowDown /> 
-}</span>
+            <span className="text-xl sm:text-2xl md:text-3xl">Delivery & Returns</span>
+            <span className="text-lg sm:text-2xl">{activeDropdown === "Delivery & Returns" ? <FaArrowUp /> : <FaArrowDown />}</span>
           </button>
           {activeDropdown === "Delivery & Returns" && (
-        <div className="text-lg text-gray-400 mt-4 p-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque cumque animi modi sed, assumenda ducimus unde necessitatibus suscipit libero consectetur sapiente, magni quaerat repellat aut nostrum nobis autem natus hic.
-        </div>
+            <div className="text-base sm:text-lg text-gray-400 mt-4 p-2 sm:p-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque cumque animi modi sed, assumenda ducimus unde necessitatibus suscipit libero consectetur sapiente, magni quaerat repellat aut nostrum nobis autem natus hic.
+            </div>
           )}
         </div>
 
         <div className="mb-4">
           <button
-        onClick={() => toggleDropdown("How This Was Made")}
-        className="flex justify-between w-full text-left py-4 px-2 border-b-2 border-gray-800 pb-10"
+            onClick={() => toggleDropdown("How This Was Made")}
+            className="flex justify-between w-full text-left py-2 sm:py-4 px-2 border-b-2 border-gray-800 pb-4 sm:pb-10"
           >
-        <span className="text-3xl">How This Was Made</span>
-        <span className="text-2xl">{activeDropdown === "How This Was Made" ? <FaArrowUp />:<FaArrowDown />
-}</span>
+            <span className="text-xl sm:text-2xl md:text-3xl">How This Was Made</span>
+            <span className="text-lg sm:text-2xl">{activeDropdown === "How This Was Made" ? <FaArrowUp /> : <FaArrowDown />}</span>
           </button>
           {activeDropdown === "How This Was Made" && (
-        <div className="text-lg text-gray-400 mt-4 p-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, recusandae? Dolorum eos sunt aliquid, nulla accusamus hic dolores natus quo aut culpa impedit iusto, architecto ipsum ex temporibus quidem doloribus.
-        </div>
+            <div className="text-base sm:text-lg text-gray-400 mt-4 p-2 sm:p-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, recusandae? Dolorum eos sunt aliquid, nulla accusamus hic dolores natus quo aut culpa impedit iusto, architecto ipsum ex temporibus quidem doloribus.
+            </div>
           )}
         </div>
       </div>
